@@ -51,7 +51,24 @@
       </div>
 
 
-
+      <form method="get" action="">
+        <input type="text" name="tahun" value="">
+        <select name="bulan" id="">
+          <option value="1">Januari</option>
+          <option value="2">Februari</option>
+          <option value="3">Maret</option>
+          <option value="4">April</option>
+          <option value="5">Mei</option>
+          <option value="6">Juni</option>
+          <option value="7">Juli</option>
+          <option value="8">Agustus</option>
+          <option value="9">September</option>
+          <option value="10">Oktober</option>
+          <option value="11">November</option>
+          <option value="12">Desember</option>
+        </select>
+        <input type="submit" name="cari" value="cari">
+      </form>
       <div class="card">
         <div class="card-header border-transparent">
           <h3 class="card-title" style="background-color: green;">ANGGOTA PERPUSTAKAAN</h3>
@@ -68,7 +85,13 @@
                 </tr>
               </thead>
               <tbody>
-
+                <?php
+                // Koneksi
+                if (isset($_GET['cari'])) {
+                  $bulan = $_GET['bulan'];
+                  $tahun = $_GET['tahun'];
+                }
+                ?>
                 <?php $no = 1;
                 foreach ($user as $isi) { ?>
                   <tr>
@@ -77,7 +100,12 @@
                     <td><?= $isi['tgl_bergabung']; ?></>
                     <td><?php
                         $id = $isi['anggota_id'];
-                        $dd = $this->db->query("SELECT * FROM tbl_pinjam WHERE anggota_id= '$id' AND status = 'Di Kembalikan' ");
+                        if (isset($_GET['cari'])) {
+                          $dd = $this->db->query("SELECT * FROM tbl_pinjam WHERE anggota_id= '$id' AND status = 'Di Kembalikan' AND year(tgl_pinjam)='$tahun' AND month(tgl_pinjam) ='$bulan'");
+                        } else {
+                          $dd = $this->db->query("SELECT * FROM tbl_pinjam WHERE anggota_id= '$id' AND status = 'Di Kembalikan' ");
+                        }
+
                         if ($dd->num_rows() > 0) {
                           echo $dd->num_rows();
                         } else {
@@ -114,7 +142,13 @@
                 </tr>
               </thead>
               <tbody>
-
+                <?php
+                // Koneksi
+                if (isset($_GET['cari'])) {
+                  $bulan = $_GET['bulan'];
+                  $tahun = $_GET['tahun'];
+                }
+                ?>
                 <?php $no = 1;
                 foreach ($buku as $isi) { ?>
                   <tr>
@@ -123,7 +157,12 @@
                     <td><?= $isi['pengarang']; ?></td>
                     <td><?php
                         $id = $isi['buku_id'];
-                        $dd = $this->db->query("SELECT * FROM tbl_pinjam WHERE buku_id= '$id' AND status = 'Di Kembalikan' ");
+                        if (isset($_GET['cari'])) {
+                          $dd = $this->db->query("SELECT * FROM tbl_pinjam WHERE buku_id= '$id' AND status = 'Di Kembalikan' AND year(tgl_pinjam)='$tahun' AND month(tgl_pinjam) ='$bulan' ");
+                        } else {
+                          $dd = $this->db->query("SELECT * FROM tbl_pinjam WHERE buku_id= '$id' AND status = 'Di Kembalikan' ");
+                        }
+
                         if ($dd->num_rows() > 0) {
                           echo $dd->num_rows();
                         } else {
