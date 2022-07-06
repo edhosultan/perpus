@@ -33,7 +33,16 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Sampul <small style="color:green">(gambar) * opsional</small></label>
-                                        <input type="file" accept="image/*" name="gambar">
+                                        <input type="file" accept="image/*" name="sampul">
+
+                                        <?php if (!empty($ebook->sampul !== "0")) { ?>
+                                            <br />
+                                            <a href="<?= base_url('assets_style/image/ebook/' . $ebook->sampul); ?>" target="_blank">
+                                                <img src="<?= base_url('assets_style/image/ebook/' . $ebook->sampul); ?>" style="width:70px;height:70px;" class="img-responsive">
+                                            </a>
+                                        <?php } else {
+                                            echo '<br/><p style="color:red">* Tidak ada Sampul</p>';
+                                        } ?>
                                     </div>
                                     <div class="form-group">
                                         <label>Judul Ebook</label>

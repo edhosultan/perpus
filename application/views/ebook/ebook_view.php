@@ -30,9 +30,11 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Sampul</th>
                                         <th>Judul Ebook</th>
                                         <th>Penerbit</th>
                                         <th>Pengarang</th>
+                                        <th>Tanggal Masuk</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -41,9 +43,21 @@
                                     foreach ($ebook->result_array() as $isiebook) { ?>
                                         <tr>
                                             <td><?= $no; ?></td>
+                                            <td>
+                                                <center>
+                                                    <?php if (!empty($isiebook['sampul'] !== "0")) { ?>
+                                                        <img src="<?php echo base_url(); ?>assets_style/image/ebook/<?php echo $isiebook['sampul']; ?>" alt="#" class="img-responsive" style="height:auto;width:100px;" />
+                                                    <?php } else { ?>
+                                                        <!--<img src="" alt="#" class="user-image" style="border:2px solid #fff;"/>-->
+                                                        <i class="fa fa-book fa-3x" style="color:#333;"></i> <br /><br />
+                                                        Tidak Ada Sampul
+                                                    <?php } ?>
+                                                </center>
+                                            </td>
                                             <td><?= $isiebook['judul_ebook']; ?></td>
                                             <td><?= $isiebook['penerbit_ebook']; ?></td>
                                             <td><?= $isiebook['pengarang_ebook']; ?></td>
+                                            <td><?= $isiebook['tgl_masuk']; ?></td>
                                             <td <?php if ($this->session->userdata('level') == 'Petugas') { ?>style="width:17%;" <?php } ?>>
 
                                                 <?php if ($this->session->userdata('level') == 'Petugas') { ?>

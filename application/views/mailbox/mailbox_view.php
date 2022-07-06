@@ -60,10 +60,11 @@
 
 												<?php if ($this->session->userdata('level') == 'Petugas') { ?> <?php } ?>
 												<td>
-													<a href="<?= base_url('transaksi/mailboxedit/' . $isi['mailbox_id']); ?>"><button class="btn btn-success"><i class="fa fa-edit"></i></button></a>
-													<a href="<?= base_url('transaksi/detailmailbox/' . $isi['mailbox_id']); ?>">
+													<a href="<?= base_url('data/mailboxedit/' . $isi['mailbox_id']); ?>">
+														<button class="btn btn-success"><i class="fa fa-pen"></i> Edit</button></a>
+													<a href="<?= base_url('data/mailboxdetail/' . $isi['mailbox_id']); ?>">
 														<button class="btn btn-primary"><i class="fa fa-sign-in"></i> Detail</button></a>
-													<a href="<?= base_url('transaksi/prosesmailbox?id_mailbox=' . $isi['id_mailbox']); ?>" onclick="return confirm('Anda yakin Pesan ini akan dihapus ?');">
+													<a href="<?= base_url('data/prosesmailbox?id_mailbox=' . $isi['id_mailbox']); ?>" onclick="return confirm('Anda yakin Pesan ini akan dihapus ?');">
 														<button class="btn btn-danger"><i class="fa fa-trash"></i></button></a>
 
 											</tr>
@@ -89,10 +90,9 @@
 														<center><?= $isi['status']; ?></center>
 													</td>
 													<td>
-														<a href="<?= base_url('transaksi/mailboxedit/' . $isi['mailbox_id']); ?>"><button class="btn btn-success"><i class="fa fa-edit"></i></button></a>
-														<a href="<?= base_url('transaksi/detailmailbox/' . $isi['mailbox_id']); ?>">
+														<a href="<?= base_url('data/mailboxdetail/' . $isi['mailbox_id']); ?>">
 															<button class="btn btn-primary"><i class="fa fa-sign-in"></i> Detail</button></a>
-														<a href="<?= base_url('transaksi/prosesmailbox?id_mailbox=' . $isi['id_mailbox']); ?>" onclick="return confirm('Anda yakin Pesan ini akan dihapus ?');">
+														<a href="<?= base_url('data/prosesmailbox?id_mailbox=' . $isi['id_mailbox']); ?>" onclick="return confirm('Anda yakin Pesan ini akan dihapus ?');">
 															<button class="btn btn-danger"><i class="fa fa-trash"></i></button></a>
 													</td>
 

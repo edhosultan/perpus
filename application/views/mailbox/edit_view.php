@@ -1,4 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script acess allowed'); ?>
+
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1>
@@ -17,96 +18,25 @@
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
-						<form action="<?php echo base_url('transaksi/prosesmailbox'); ?>" method="POST" enctype="multipart/form-data">
+						<form action="<?php echo base_url('data/prosesmailbox'); ?>" method="POST" enctype="multipart/form-data">
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="form-group">
-										<label>Mailbox</label>
-										<input type="text" class="form-control" value="<?= $mailbox->mailbox_id; ?>" name="nomb" readonly class="form-control" placeholder="">
-									</div>
-									<div class="form-group">
-										<label>Tanggal Transaksi</label>
-										<input type="date" class="form-control" value="<?= $mailbox->tgl_transaksi; ?>" name="tgl_transaksi" placeholder="">
-									</div>
-
-									<div class="form-group">
 										<?php if ($this->session->userdata('level') == 'Petugas') { ?>
 											<label>Status</label>
-											<select class="form-control">
-												<option value="dipesan">dipesan</option>
-												<option value="dipesan">sudah disiapkan</option>
+											<select class="form-control" name="status">
+												<option value="DIPESAN">DIPESAN</option>
+												<option value="KONFIRMASI">KONFIRMASI</option>
 											</select>
 
 									</div>
 								<?php } ?>
-								<div class="form-group">
-									<?php if ($this->session->userdata('level') == 'Anggota') { ?>
-										<label>Status</label>
-										<select class="form-control">
-											<option value="dipesan" readonly class="form-control">dipesan</option>
-										</select>
-
-								</div>
-							<?php } ?>
-							<div class="form-group">
-								<table class="table table-striped">
-									<tr style="background:yellowgreen">
-										<td colspan="3">Pesan Buku</td>
-									</tr>
-									<tr>
-										<td>Kode Buku</td>
-										<td>:</td>
-										<td>
-
-											<div class="input-group">
-												<input type="text" class="form-control" autocomplete="off" name="buku_id" id="buku-search" placeholder="Contoh ID Buku : BK001" type="text" value="<?= $mailbox->buku_id; ?>">
-												<span class="input-group-btn">
-													<a data-toggle="modal" data-target="#TableBuku" class="btn btn-primary"><i class="fa fa-search"></i></a>
-												</span>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>Data Buku</td>
-										<td>:</td>
-										<td>
-											<div id="result_tunggu_buku">
-												<p style="color:red">* Belum Ada Hasil</p>
-											</div>
-											<div id="result_buku"></div>
-										</td>
-									</tr>
-									<tr>
-										<td>ID Anggota</td>
-										<td>:</td>
-										<td>
-											<div class="input-group">
-												<input type="text" class="form-control" required autocomplete="off" name="anggota_id" id="search-box" placeholder="Contoh ID Anggota : AG001" type="text" value="<?= $mailbox->anggota_id; ?>">
-												<span class="input-group-btn">
-													<a data-toggle="modal" data-target="#TableAnggota" class="btn btn-primary"><i class="fa fa-search"></i></a>
-												</span>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>Biodata</td>
-										<td>:</td>
-										<td>
-											<div id="result_tunggu">
-												<p style="color:red">* Belum Ada Hasil</p>
-											</div>
-											<div id="result"></div>
-										</td>
-									</tr>
-								</table>
-
-							</div>
-							<div class="pull-right">
-								<input type="hidden" name="anggota_id" value="<?= 'ses_id' ?>">
-								<input type="hidden" name="edit_view" value="edit_view">
-								<button type="submit" class="btn btn-primary btn-md">Submit</button>
+								<div class="pull-right">
+									<input type="hidden" name="mailbox_id" value="<?php echo $this->data['mailbox']->mailbox_id; ?>">
+									<input type="hidden" name="edit" value="edit">
+									<button type="submit" class="btn btn-primary btn-md">Submit</button>
 						</form>
-						<a href="<?= base_url('transaksi/mailbox'); ?>" class="btn btn-danger btn-md">Kembali</a>
+						<a href="<?= base_url('data/mailbox'); ?>" class="btn btn-danger btn-md">Kembali</a>
 					</div>
 				</div>
 			</div>

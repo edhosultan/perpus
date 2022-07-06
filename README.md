@@ -9,19 +9,19 @@
 
 <b>Petugas Perpus : </b>
 <br/>
-User : anang
+User : eits rahasia
 <br/>
-Pass : 123
+Pass : tidak semudah itu ferguso
 
 <b>Anggota Perpus :</b>
 <br/>
-User : fauzan
+User : ualala
 <br/>
-Pass : 123
+Pass : ehem
 
 # Contributors
-<a href="https://fauzan.codekop.com/"> Fauzan Falah</a>
+<a href="https://ayukmencodingbersamaoppaedho.com/"> Edho H</a>
 
-My Blog : <a href="https://www.codekop.com/"> Codekop.com</a>
+My Blog : <a href="https://www.nekopoi.com/"> nekopoi.com</a>
 
 Gunakan Aplikasi dengan bijak, dan selamat belajar

@@ -39,6 +39,15 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <label>Id Buku</label>
+                                        <select name="buku" class="form-control select2" required="required">
+                                            <option disabled selected value> -- Pilih Id Buku -- </option>
+                                            <?php foreach ($buku as $isi) { ?>
+                                                <option value="<?= $isi['id_buku']; ?>"><?= $isi['id_buku']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label>ISBN</label>
                                         <input type="text" class="form-control" name="isbn" placeholder="Contoh ISBN : 978-602-8123-35-8">
                                     </div>

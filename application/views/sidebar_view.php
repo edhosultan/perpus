@@ -118,10 +118,10 @@
 
               </a>
             </li>
-            <li class=" <?php if ($this->uri->uri_string() == 'transaksi/mailbox') {
+            <li class=" <?php if ($this->uri->uri_string() == 'data/mailbox') {
                           echo 'active';
                         } ?>">
-              <a href="<?php echo base_url("transaksi/mailbox"); ?>" class="cursor">
+              <a href="<?php echo base_url("data/mailbox"); ?>" class="cursor">
                 <span class="fa fa-book"></span> Mailbox
 
               </a>
@@ -232,42 +232,42 @@
           </a>
           <ul class="treeview-menu">
             <li class="">
-              <a href="<?php echo base_url('laporan/laporananggota'); ?>" target="_blank" class="cursor">
+              <a href="<?php echo base_url('laporan/laporananggota_view'); ?>" class="cursor">
                 <i class="fa fa-print"></i> <span>Cetak Laporan Anggota</span>
               </a>
             </li>
             <li class="">
-              <a href="<?php echo base_url('laporan/laporanbuku'); ?>" target="_blank" class="cursor">
+              <a href="<?php echo base_url('laporan/laporanbuku_view'); ?>" class="cursor">
                 <i class="fa fa-print"></i> <span>Cetak Laporan Buku</span>
               </a>
             </li>
             <li class="">
-              <a href="<?php echo base_url('laporan/laporanebook'); ?>" target="_blank" class="cursor">
+              <a href="<?php echo base_url('laporan/laporanebook_view'); ?>" class="cursor">
                 <i class="fa fa-print"></i> <span>Cetak Laporan Ebook</span>
               </a>
             </li>
             <li class="">
-              <a href="<?php echo base_url('laporan/laporanpeminjaman'); ?>" target="_blank" class="cursor">
+              <a href="<?php echo base_url('laporan/laporanpeminjaman_view'); ?>" class="cursor">
                 <i class="fa fa-print"></i> <span>Cetak Laporan Peminjaman</span>
               </a>
             </li>
             <li class="">
-              <a href="<?php echo base_url('laporan/laporanpengembalian'); ?>" target="_blank" class="cursor">
+              <a href="<?php echo base_url('laporan/laporanpengembalian_view'); ?>" class="cursor">
                 <i class="fa fa-print"></i> <span>Cetak Laporan Pengembalian</span>
               </a>
             </li>
             <li class="">
-              <a href="<?php echo base_url('laporan/laporandenda'); ?>" target="_blank" class="cursor">
+              <a href="<?php echo base_url('laporan/laporandenda_view'); ?>" class="cursor">
                 <i class="fa fa-print"></i> <span>Cetak Laporan Denda</span>
               </a>
             </li>
             <li class="">
-              <a href="<?php echo base_url('laporan/laporanrusak'); ?>" target="_blank" class="cursor">
+              <a href="<?php echo base_url('laporan/laporanrusak_view'); ?>" class="cursor">
                 <i class="fa fa-print"></i> <span>Cetak Laporan Buku Rusak</span>
               </a>
             </li>
             <li class="">
-              <a href="<?php echo base_url('laporan/laporanpesan'); ?>" target="_blank" class="cursor">
+              <a href="<?php echo base_url('laporan/laporanpesan_view'); ?>" class="cursor">
                 <i class="fa fa-print"></i> <span>Cetak Laporan Mailbox</span>
               </a>
             </li>
@@ -299,10 +299,10 @@
         <li class="<?php if ($this->uri->uri_string() == 'data') {
                       echo 'active';
                     } ?>
-				<?php if ($this->uri->uri_string() == 'transaksi/detailmailbox/' . $this->uri->segment('3')) {
+				<?php if ($this->uri->uri_string() == 'data/detailmailbox/' . $this->uri->segment('3')) {
           echo 'active';
         } ?>">
-          <a href="<?php echo base_url("transaksi/mailbox"); ?>" class="cursor">
+          <a href="<?php echo base_url("data/mailbox"); ?>" class="cursor">
             <i class="fa fa-book"></i> <span>Pesan Buku</span>
           </a>
         </li>

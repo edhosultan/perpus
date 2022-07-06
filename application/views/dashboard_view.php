@@ -2,42 +2,154 @@
 
 <?php if ($this->session->userdata('level') == 'Anggota') { ?>
   <div class="content-wrapper">
-    <div class="container">
-      <canvas id="myChart"></canvas>
-    </div>
+    <section class="content-header">
+      <h1>
+        Dashboard <small>Perpus Seru</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="col-lg-3 col-xs-6">
+            <!--small box-->
+            <div class="small-box bg-blue">
+              <div class="inner">
+                <h3><?= $count_buku; ?></h3>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script type="text/javascript">
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: [
-            <?php
-            if (count($buku) > 0) {
-              foreach ($buku as $data) {
-                echo "'" . $data->title . "',";
-              }
-            }
-            ?>
-          ],
-          datasets: [{
-            label: 'Jumlah Peminjam',
-            backgroundColor: '#ADD8E6',
-            borderColor: '##93C3D2',
-            data: [
-              <?php
-              if (count($buku) > 0) {
-                foreach ($buku as $data) {
-                  echo number_format($data->jumlah_peminjaman)  . ", ";
-                }
-              }
-              ?>
-            ]
-          }]
-        },
-      });
-    </script>
+                <p>Jenis Buku</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-book"></i>
+              </div>
+              <a href="data" class="small-box-footer">Informasi Lebih <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-xs-6">
+            <!--small box-->
+            <div class="small-box bg-yellow">
+              <div class="inner">
+                <h3><?= $count_ebook; ?></h3>
+
+                <p>Jenis Ebook</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-book"></i>
+              </div>
+              <a href="data/ebook" class="small-box-footer">Informasi Lebih <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+
+
+
+      <div class="card">
+        <div class="card-header border-transparent">
+          <h3 class="card-title" style="background-color: green;">ANGGOTA PERPUSTAKAAN</h3>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table m-0,table table-bordered table-striped table" style="background-color: grey;">
+              <thead>
+                <tr>
+                  <th>Id Anggota</th>
+                  <th>Nama Anggota</th>
+                  <th>Tanggal Bergabung</th>
+                  <th>Peminjaman Selama Ini</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <?php $no = 1;
+                foreach ($user as $isi) { ?>
+                  <tr>
+                    <td><?= $isi['id_login']; ?></td>
+                    <td><?= $isi['nama']; ?></>
+                    <td><?= $isi['tgl_bergabung']; ?></>
+                    <td><?php
+                        $id = $isi['anggota_id'];
+                        $dd = $this->db->query("SELECT * FROM tbl_pinjam WHERE anggota_id= '$id' AND status = 'Di Kembalikan' ");
+                        if ($dd->num_rows() > 0) {
+                          echo $dd->num_rows();
+                        } else {
+                          echo '0';
+                        }
+                        ?></td>
+                  </tr>
+                <?php $no++;
+                } ?>
+
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="card">
+        <div class="card-header border-transparent">
+          <h3 class="card-title" style="background-color: green;">TERAKHIR DIPESAN</h3>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table m-0,table table-bordered table-striped table" style="background-color: grey;">
+              <thead>
+                <tr>
+                  <th>Id Buku</th>
+                  <th>Judul Buku</th>
+                  <th>Pengarang</th>
+                  <th>Buku Populer Sering Dipinjam</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <?php $no = 1;
+                foreach ($buku as $isi) { ?>
+                  <tr>
+                    <td><?= $isi['id_buku']; ?></td>
+                    <td><?= $isi['title']; ?></td>
+                    <td><?= $isi['pengarang']; ?></td>
+                    <td><?php
+                        $id = $isi['buku_id'];
+                        $dd = $this->db->query("SELECT * FROM tbl_pinjam WHERE buku_id= '$id' AND status = 'Di Kembalikan' ");
+                        if ($dd->num_rows() > 0) {
+                          echo $dd->num_rows();
+                        } else {
+                          echo '0';
+                        }
+                        ?></td>
+                  </tr>
+                <?php $no++;
+                } ?>
+
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+        <div class="card-footer clearfix">
+          <a href="data/mailbox" class="btn btn-sm btn-info float-left">Pesan Buku Baru</a>
+          <a href="data/mailbox" class="btn btn-sm btn-secondary float-right">Liat Semua Pesanan</a>
+        </div>
+
+      </div>
+
+
+  </div>
+  </section>
   </div>
 
 <?php } else { ?>
@@ -138,7 +250,7 @@
               <div class="icon">
                 <i class="fa fa-book"></i>
               </div>
-              <a href="transaksi/mailbox" class="small-box-footer">Informasi Lebih <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="data/mailbox" class="small-box-footer">Informasi Lebih <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
@@ -147,5 +259,7 @@
     </section>
   </div>
 <?php } ?>
+
+
 
 <!-- /.content -->

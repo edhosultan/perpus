@@ -42,17 +42,22 @@ class M_Login extends CI_Model
   }
   function GET_DENDA()
   {
-    $alldenda = $this->db->query("SELECT * FROM tbl_denda JOIN tbl_pinjam ON tbl_pinjam.pinjam_id = tbl_denda.pinjam_id");
+    $alldenda = $this->db->query("SELECT * FROM tbl_denda JOIN tbl_pinjam ON tbl_pinjam.pinjam_id = tbl_denda.pinjam_id JOIN tbl_login ON tbl_login.anggota_id = tbl_pinjam.anggota_id");
     return $alldenda->result_array();
   }
   function GET_RUSAK()
   {
-    $allrusak = $this->db->get("tbl_buku_rusak");
+    $allrusak = $this->db->query("SELECT * FROM tbl_buku_rusak JOIN tbl_kategori ON tbl_kategori.id_kategori = tbl_buku_rusak.id_kategori JOIN tbl_rak ON tbl_rak.id_rak = tbl_buku_rusak.id_rak JOIN tbl_buku ON tbl_buku.id_buku = tbl_buku_rusak.id_buku");
     return $allrusak->result_array();
   }
   function GET_PESAN()
   {
     $allpesan = $this->db->get("tbl_mailbox");
     return $allpesan->result_array();
+  }
+  function GET_FILTER()
+  {
+    $allusers = $this->db->query("SELECT * FROM tbl_login WHERE year(tgl_bergabung)='2019'");
+    return $allusers->result_array();
   }
 }

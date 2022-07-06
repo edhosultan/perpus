@@ -1,179 +1,192 @@
-<?php if(! defined('BASEPATH')) exit('No direct script acess allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script acess allowed');
 
 class M_Admin extends CI_Model
 {
   function __construct()
   {
-	 parent::__construct();
-	 //validasi jika user belum login
-	 }
-
-   function get_table($table_name)
-   {
-     $get_user = $this->db->get($table_name);
-     return $get_user->result_array();
-   }
-function get_buku(){
-  $get_buku = $this->db->query("SELECT title,COUNT(*) AS jumlah_peminjaman FROM tbl_buku INNER JOIN tbl_pinjam ON tbl_pinjam.buku_id=tbl_buku.buku_id GROUP BY tbl_pinjam.buku_id");
-  return $get_buku->result_array();
-}
-   function get_tableid($table_name,$where,$id)
-   {
-     $this->db->where($where,$id);
-     $edit = $this->db->get($table_name);
-     return $edit->result_array();
-   }
-
-   function get_tableid_edit($table_name,$where,$id)
-   {
-     $this->db->where($where,$id);
-     $edit = $this->db->get($table_name);
-     return $edit->row();
-   }
-
-   function add_multiple($table,$data = array())
-  {
-      $total_array = count($data);
-
-      if($total_array != 0)
-      {
-      $this->db->insert_batch($table, $data);
-      }
+    parent::__construct();
+    //validasi jika user belum login
   }
 
-   function insertTable($table_name,$data)
-   {
-     $tambah = $this->db->insert($table_name,$data);
-     return $tambah;
-   }
+  function get_table($table_name)
+  {
+    $get_user = $this->db->get($table_name);
+    return $get_user->result_array();
+  }
+  function get_buku()
+  {
+    $get_buku = $this->db->query("SELECT title,COUNT(*) AS jumlah_peminjaman FROM tbl_buku INNER JOIN tbl_pinjam ON tbl_pinjam.buku_id=tbl_buku.buku_id GROUP BY tbl_pinjam.buku_id");
+    return $get_buku->result_array();
+  }
+  function get_tableid($table_name, $where, $id)
+  {
+    $this->db->where($where, $id);
+    $edit = $this->db->get($table_name);
+    return $edit->result_array();
+  }
 
-   function LastinsertId($table_name,$data)
-   {
-     $this->db->insert($table_name,$data);
-     $insert_id = $this->db->insert_id();
-     return $insert_id;
-   }
+  function get_tableid_edit($table_name, $where, $id)
+  {
+    $this->db->where($where, $id);
+    $edit = $this->db->get($table_name);
+    return $edit->row();
+  }
 
-   function update_table($table_name,$where,$id,$data)
-   {
-     $this->db->where($where,$id);
-     $update = $this->db->update($table_name,$data);
-     return $update;
-   }
+  function add_multiple($table, $data = array())
+  {
+    $total_array = count($data);
 
-   function delete_table($table_name,$where,$id)
-   {
-     $this->db->where($where,$id);
-     $hapus = $this->db->delete($table_name);
-     return $hapus;
-   }
+    if ($total_array != 0) {
+      $this->db->insert_batch($table, $data);
+    }
+  }
 
-   function delete_table_multiple($table_name,$where,$id)
-   {
-      if (!empty($id)) {
-         $this->db->where_in($where,$id);
-         $hapus = $this->db->delete($table_name);
-         return $hapus;
-      }
-   }
+  function insertTable($table_name, $data)
+  {
+    $tambah = $this->db->insert($table_name, $data);
+    return $tambah;
+  }
 
-   function edit_table($table_name,$where,$id)
-   {
-     $this->db->where($where,$id);
-     $edit = $this->db->get($table_name);
-     return $edit->row();
-   }
+  function LastinsertId($table_name, $data)
+  {
+    $this->db->insert($table_name, $data);
+    $insert_id = $this->db->insert_id();
+    return $insert_id;
+  }
 
-   function CountTable($table_name)
-   {
-     $Count = $this->db->get($table_name);
-     return $Count->num_rows();
-   }
+  function update_table($table_name, $where, $id, $data)
+  {
+    $this->db->where($where, $id);
+    $update = $this->db->update($table_name, $data);
+    return $update;
+  }
 
-   function CountTableId($table_name,$where,$id)
-   {
-     $this->db->where($where,$id);
-     $Count = $this->db->get($table_name);
-     return $Count->num_rows();
-   }
+  function delete_table($table_name, $where, $id)
+  {
+    $this->db->where($where, $id);
+    $hapus = $this->db->delete($table_name);
+    return $hapus;
+  }
 
-   function SelectTable($table_name,$query,$id,$orderby)
-   {
-       $this->db->select($query, FALSE); // select('RIGHT(user.id_odojers,4) as kode', FALSE);
-       $this->db->order_by($id,$orderby);
-       $query = $this->db->get($table_name); // cek dulu apakah ada sudah ada kode di tabel.
-       return $query;
-   }
+  function delete_table_multiple($table_name, $where, $id)
+  {
+    if (!empty($id)) {
+      $this->db->where_in($where, $id);
+      $hapus = $this->db->delete($table_name);
+      return $hapus;
+    }
+  }
 
-   function SelectTableSQL($query)
-   {
-       $row = $this->db->query($query);
-       return $row;
-   }
+  function edit_table($table_name, $where, $id)
+  {
+    $this->db->where($where, $id);
+    $edit = $this->db->get($table_name);
+    return $edit->row();
+  }
+
+  function CountTable($table_name)
+  {
+    $Count = $this->db->get($table_name);
+    return $Count->num_rows();
+  }
+
+  function CountTableId($table_name, $where, $id)
+  {
+    $this->db->where($where, $id);
+    $Count = $this->db->get($table_name);
+    return $Count->num_rows();
+  }
+
+  function SelectTable($table_name, $query, $id, $orderby)
+  {
+    $this->db->select($query, FALSE); // select('RIGHT(user.id_odojers,4) as kode', FALSE);
+    $this->db->order_by($id, $orderby);
+    $query = $this->db->get($table_name); // cek dulu apakah ada sudah ada kode di tabel.
+    return $query;
+  }
+
+  function SelectTableSQL($query)
+  {
+    $row = $this->db->query($query);
+    return $row;
+  }
 
   function get_user($user)
   {
-    $this->db->where('id_login',$user);
+    $this->db->where('id_login', $user);
     $get_user = $this->db->get('tbl_login');
     return $get_user->row();
-	}
-	
-	function rp($angka){
-			$hasil_rupiah = "Rp" . number_format($angka,0,',','.'). ',-';
-			return $hasil_rupiah;
-	}
-
- 
-	public function buat_kode($table_name,$kodeawal,$idkode,$orderbylimit)
-  {
-      $query = $this->db->query("select * from $table_name $orderbylimit"); // cek dulu apakah ada sudah ada kode di tabel.
-      
-		  if($query->num_rows() > 0){
-        //jika kode ternyata sudah ada.
-        $hasil = $query->row();
-        $kd = $hasil->$idkode;
-        $cd = $kd;
-        $nomor = $query->num_rows();
-        $kode = $cd + 1;
-        $kodejadi = $kodeawal."00".$kode;    // hasilnya CUS-0001 dst.
-        $kdj = $kodejadi;
-		  }else {
-        //jika kode belum ada
-        $kode = 0+1;
-        $kodejadi = $kodeawal."00".$kode;    // hasilnya CUS-0001 dst.
-        $kdj = $kodejadi;
-      }
-		  return $kdj;
   }
 
-  public function buat_kode_join($table_name,$kodeawal,$idkode)
+  function rp($angka)
   {
-      $query = $this->db->query($table_name); // cek dulu apakah ada sudah ada kode di tabel.
-		  if($query->num_rows() > 0){
-        //jika kode ternyata sudah ada.
-        $hasil = $query->row();
-        $kd = $hasil->$idkode;
-        $cd = $kd;
-        $kode = $cd + 1;
-        $kodejadi = $kodeawal."00".$kode;    // hasilnya CUS-0001 dst.
-        $kdj = $kodejadi;
-		  }else {
-        //jika kode belum ada
-        $kode = 0+1;
-        $kodejadi = $kodeawal."00".$kode;    // hasilnya CUS-0001 dst.
-        $kdj = $kodejadi;
-      }
-		  return $kdj;
+    $hasil_rupiah = "Rp" . number_format($angka, 0, ',', '.') . ',-';
+    return $hasil_rupiah;
   }
-  
+
+
+  public function buat_kode($table_name, $kodeawal, $idkode, $orderbylimit)
+  {
+    $query = $this->db->query("select * from $table_name $orderbylimit"); // cek dulu apakah ada sudah ada kode di tabel.
+
+    if ($query->num_rows() > 0) {
+      //jika kode ternyata sudah ada.
+      $hasil = $query->row();
+      $kd = $hasil->$idkode;
+      $cd = $kd;
+      $nomor = $query->num_rows();
+      $kode = $cd + 1;
+      $kodejadi = $kodeawal . "00" . $kode;    // hasilnya CUS-0001 dst.
+      $kdj = $kodejadi;
+    } else {
+      //jika kode belum ada
+      $kode = 0 + 1;
+      $kodejadi = $kodeawal . "00" . $kode;    // hasilnya CUS-0001 dst.
+      $kdj = $kodejadi;
+    }
+    return $kdj;
+  }
+
+  public function buat_kode_join($table_name, $kodeawal, $idkode)
+  {
+    $query = $this->db->query($table_name); // cek dulu apakah ada sudah ada kode di tabel.
+    if ($query->num_rows() > 0) {
+      //jika kode ternyata sudah ada.
+      $hasil = $query->row();
+      $kd = $hasil->$idkode;
+      $cd = $kd;
+      $kode = $cd + 1;
+      $kodejadi = $kodeawal . "00" . $kode;    // hasilnya CUS-0001 dst.
+      $kdj = $kodejadi;
+    } else {
+      //jika kode belum ada
+      $kode = 0 + 1;
+      $kodejadi = $kodeawal . "00" . $kode;    // hasilnya CUS-0001 dst.
+      $kdj = $kodejadi;
+    }
+    return $kdj;
+  }
+
   function acak($panjang)
   {
-      $karakter= 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789';
-      $string = '';
-      for ($i = 0; $i < $panjang; $i++) {
-        $pos = rand(0, strlen($karakter)-1);
-        $string .= $karakter[$pos];
-      }
-      return $string;
+    $karakter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789';
+    $string = '';
+    for ($i = 0; $i < $panjang; $i++) {
+      $pos = rand(0, strlen($karakter) - 1);
+      $string .= $karakter[$pos];
+    }
+    return $string;
+  }
+
+  public function top3buku()
+  {
+    $top3buku = $this->db->query("SELECT COUNT(tbl_buku.buku_id) as total, tbl_pinjam.*, tbl_buku.* FROM tbl_pinjam as p JOIN tbl_buku as b ON b.buku_id = p.buku_id GROUP BY p.buku_id LIMIT 3");
+    return $top3buku->result_array();
+  }
+
+  public function top3anggota()
+  {
+    $top3anggota = $this->db->query("SELECT COUNT(tbl_login.anggota_id) as total, a.*, p.* FROM tbl_pinjam as p JOIN tbl_login as a ON a.anggota_id = p.anggota_id GROUP BY p.anggota_id LIMIT 3");
+    return $top3anggota->result_array();
   }
 }

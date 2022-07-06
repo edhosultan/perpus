@@ -76,8 +76,8 @@
 													<td><?= $no; ?></td>
 													<td><?= $book['nama_kategori_ebook']; ?></td>
 													<td style="width:20%;">
-														<a href="<?= base_url('data/kategori?id=' . $book['id_kategori_ebook']); ?>"><button class="btn btn-success"><i class="fa fa-edit"></i></button></a>
-														<a href="<?= base_url('data/katprosesbook?kat_id=' . $book['id_kategori_ebook']); ?>" onclick="return confirm('Anda yakin Kategori ebook ini akan dihapus ?');">
+														<a href="<?= base_url('data/kategori_ebook?id=' . $book['id_kategori_ebook']); ?>"><button class="btn btn-success"><i class="fa fa-edit"></i></button></a>
+														<a href="<?= base_url('data/katprosesbook?katbook_id=' . $book['id_kategori_ebook']); ?>" onclick="return confirm('Anda yakin Kategori ebook ini akan dihapus ?');">
 															<button class="btn btn-danger"><i class="fa fa-trash"></i></button></a>
 													</td>
 												</tr>

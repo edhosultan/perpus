@@ -53,7 +53,7 @@ $katbook = $this->M_Admin->get_tableid_edit('tbl_kategori_ebook', 'id_kategori_e
 							</tr>
 							<tr>
 								<td>Link Ebook</td>
-								<td><a><?= $ebook->nama_file; ?></a></td>
+								<td><a href="<?= $ebook->nama_file; ?>" target="_blank">klik disini</a></td>
 							</tr>
 							<tr>
 								<td>Keterangan Lainnya</td>

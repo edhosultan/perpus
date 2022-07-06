@@ -84,17 +84,6 @@
                                         } ?>
                                     </div>
                                     <div class="form-group">
-                                        <label>Lampiran Buku <small style="color:green">(pdf) * opsional</small></label>
-                                        <input type="file" accept="" name="lampiran">
-                                        <?php if (!empty($buku->lampiran !== "0")) { ?>
-                                            <a href="<?= base_url('assets_style/image/buku/' . $buku->lampiran); ?>" class="btn btn-primary" target="_blank">
-                                                <i class="fa fa-book"></i> Lampiran
-                                            </a>
-                                        <?php  } else {
-                                            echo '<br/><p style="color:red">* Tidak ada Lampiran</p>';
-                                        } ?>
-                                    </div>
-                                    <div class="form-group">
                                         <label>Keterangan Lainnya</label>
                                         <textarea class="form-control" name="ket" id="summernotehal" style="height:120px"><?= $buku->isi; ?></textarea>
                                     </div>
@@ -102,7 +91,6 @@
                             </div>
                             <div class="pull-right">
                                 <input type="hidden" name="sampul" value="<?= $buku->sampul; ?>">
-                                <input type="hidden" name="lamp" value="<?= $buku->lampiran; ?>">
                                 <input type="hidden" name="edit" value="<?= $buku->id_buku; ?>">
                                 <button type="submit" class="btn btn-primary btn-md">Submit</button>
                         </form>

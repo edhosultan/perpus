@@ -87,4 +87,76 @@ class Laporan extends CI_Controller
         $mpdf->WriteHTML($pdf);
         $mpdf->Output();
     }
+    function laporananggota_view()
+    {
+        $this->data['idbo'] = $this->session->userdata('ses_id');
+        $this->data['title_web'] = 'Laporan Anggota';
+        $this->load->view('header_view', $this->data);
+        $this->load->view('sidebar_view', $this->data);
+        $this->load->view('laporan/laporananggota_view', $this->data);
+        $this->load->view('footer_view', $this->data);
+    }
+    function laporanbuku_view()
+    {
+        $this->data['idbo'] = $this->session->userdata('ses_id');
+        $this->data['title_web'] = 'Laporan Buku';
+        $this->load->view('header_view', $this->data);
+        $this->load->view('sidebar_view', $this->data);
+        $this->load->view('laporan/laporanbuku_view', $this->data);
+        $this->load->view('footer_view', $this->data);
+    }
+    function laporandenda_view()
+    {
+        $this->data['idbo'] = $this->session->userdata('ses_id');
+        $this->data['title_web'] = 'Laporan Denda';
+        $this->load->view('header_view', $this->data);
+        $this->load->view('sidebar_view', $this->data);
+        $this->load->view('laporan/laporandenda_view', $this->data);
+        $this->load->view('footer_view', $this->data);
+    }
+    function laporanebook_view()
+    {
+        $this->data['idbo'] = $this->session->userdata('ses_id');
+        $this->data['title_web'] = 'Laporan Ebook';
+        $this->load->view('header_view', $this->data);
+        $this->load->view('sidebar_view', $this->data);
+        $this->load->view('laporan/laporanebook_view', $this->data);
+        $this->load->view('footer_view', $this->data);
+    }
+    function laporanpeminjaman_view()
+    {
+        $this->data['idbo'] = $this->session->userdata('ses_id');
+        $this->data['title_web'] = 'Laporan Peminjaman';
+        $this->load->view('header_view', $this->data);
+        $this->load->view('sidebar_view', $this->data);
+        $this->load->view('laporan/laporanpeminjaman_view', $this->data);
+        $this->load->view('footer_view', $this->data);
+    }
+    function laporanpengembalian_view()
+    {
+        $this->data['idbo'] = $this->session->userdata('ses_id');
+        $this->data['title_web'] = 'Laporan Pengembalian';
+        $this->load->view('header_view', $this->data);
+        $this->load->view('sidebar_view', $this->data);
+        $this->load->view('laporan/laporanpengembalian_view', $this->data);
+        $this->load->view('footer_view', $this->data);
+    }
+    function laporanpesan_view()
+    {
+        $this->data['idbo'] = $this->session->userdata('ses_id');
+        $this->data['title_web'] = 'Laporan Mailbox';
+        $this->load->view('header_view', $this->data);
+        $this->load->view('sidebar_view', $this->data);
+        $this->load->view('laporan/laporanpesan_view', $this->data);
+        $this->load->view('footer_view', $this->data);
+    }
+    function laporanrusak_view()
+    {
+        $this->data['idbo'] = $this->session->userdata('ses_id');
+        $this->data['title_web'] = 'Laporan Rusak';
+        $this->load->view('header_view', $this->data);
+        $this->load->view('sidebar_view', $this->data);
+        $this->load->view('laporan/laporanrusak_view', $this->data);
+        $this->load->view('footer_view', $this->data);
+    }
 }

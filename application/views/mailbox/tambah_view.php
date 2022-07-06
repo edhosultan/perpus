@@ -17,7 +17,7 @@
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
-						<form action="<?php echo base_url('transaksi/prosesmailbox'); ?>" method="POST" enctype="multipart/form-data">
+						<form action="<?php echo base_url('data/prosesmailbox'); ?>" method="POST" enctype="multipart/form-data">
 
 							<div class="row">
 								<div class="col-sm-5">
@@ -33,6 +33,13 @@
 											</td>
 										</tr>
 										<tr>
+											<td>Status</td>
+											<td>:</td>
+											<td>
+												<input type="text" name="status" value="DIPESAN" readonly class="form-control">
+											</td>
+										</tr>
+										<tr>
 											<td>Tgl Transaksi</td>
 											<td>:</td>
 											<td>
@@ -44,7 +51,7 @@
 											<td>:</td>
 											<td>
 												<div class="input-group">
-													<input type="text" class="form-control" required autocomplete="off" name="anggota_id" id="search-box" placeholder="Contoh ID Anggota : AG001" type="text" value="">
+													<input type="text" class="form-control" required autocomplete="off" name="anggota_id" id="search-box" placeholder="PASTIKAN MASUKAN ID ANGGOTA MU JANGAN SALAH!!!" type="text" value="">
 													<span class="input-group-btn">
 														<a data-toggle="modal" data-target="#TableAnggota" class="btn btn-primary"><i class="fa fa-search"></i></a>
 													</span>
@@ -95,9 +102,9 @@
 							</div>
 							<div class="pull-right">
 								<input type="hidden" name="tambah" value="tambah">
-								<button type="submit" class="btn btn-primary btn-md">Submit</button>
+								<button type="submit" class="btn btn-primary btn-md" onclick="return confirm('Anda yakin Dengan ID Anda? Harap Cek Terlebih Dahulu');">Submit</button>
 						</form>
-						<a href="<?= base_url('transaksi/mailbox'); ?>" class="btn btn-danger btn-md">Kembali</a>
+						<a href="<?= base_url('data/mailbox'); ?>" class="btn btn-danger btn-md">Kembali</a>
 					</div>
 				</div>
 			</div>

@@ -94,11 +94,6 @@ class Data extends CI_Controller
 				unlink($sampul);
 			}
 
-			$lampiran = './assets_style/image/buku/' . $buku->lampiran;
-			if (file_exists($lampiran)) {
-				unlink($lampiran);
-			}
-
 			$this->M_Admin->delete_table('tbl_buku', 'id_buku', $this->input->get('buku_id'));
 
 			$this->session->set_flashdata('pesan', '<div id="notifikasi"><div class="alert alert-warning">
@@ -142,7 +137,6 @@ class Data extends CI_Controller
 					'id_rak' => htmlentities($post['rak']),
 					'isbn' => htmlentities($post['isbn']),
 					'sampul' => $file1['upload_data']['file_name'],
-					'lampiran' => $file2['upload_data']['file_name'],
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
 					'penerbit' => htmlentities($post['penerbit']),
@@ -166,7 +160,6 @@ class Data extends CI_Controller
 					'id_rak' => htmlentities($post['rak']),
 					'isbn' => htmlentities($post['isbn']),
 					'sampul' => $file1['upload_data']['file_name'],
-					'lampiran' => '0',
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
 					'penerbit' => htmlentities($post['penerbit']),
@@ -196,7 +189,6 @@ class Data extends CI_Controller
 					'id_rak' => htmlentities($post['rak']),
 					'isbn' => htmlentities($post['isbn']),
 					'sampul' => '0',
-					'lampiran' => $file2['upload_data']['file_name'],
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
 					'penerbit' => htmlentities($post['penerbit']),
@@ -212,7 +204,6 @@ class Data extends CI_Controller
 					'id_rak' => htmlentities($post['rak']),
 					'isbn' => htmlentities($post['isbn']),
 					'sampul' => '0',
-					'lampiran' => '0',
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
 					'penerbit' => htmlentities($post['penerbit']),
@@ -271,7 +262,6 @@ class Data extends CI_Controller
 					'id_rak' => htmlentities($post['rak']),
 					'isbn' => htmlentities($post['isbn']),
 					'sampul' => $file1['upload_data']['file_name'],
-					'lampiran' => $file2['upload_data']['file_name'],
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
 					'penerbit' => htmlentities($post['penerbit']),
@@ -321,11 +311,6 @@ class Data extends CI_Controller
 					return false;
 				}
 
-				$lampiran = './assets_style/image/buku/' . htmlentities($post['lamp']);
-				if (file_exists($lampiran)) {
-					unlink($lampiran);
-				}
-
 				// script uplaod file kedua
 				$this->upload->do_upload('lampiran');
 				$file2 = array('upload_data' => $this->upload->data());
@@ -334,7 +319,6 @@ class Data extends CI_Controller
 					'id_kategori' => htmlentities($post['kategori']),
 					'id_rak' => htmlentities($post['rak']),
 					'isbn' => htmlentities($post['isbn']),
-					'lampiran' => $file2['upload_data']['file_name'],
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
 					'penerbit' => htmlentities($post['penerbit']),
@@ -554,6 +538,7 @@ class Data extends CI_Controller
 
 			$this->data['kats'] =  $this->db->query("SELECT * FROM tbl_kategori ORDER BY id_kategori DESC")->result_array();
 			$this->data['rakbuku'] =  $this->db->query("SELECT * FROM tbl_rak ORDER BY id_rak DESC")->result_array();
+			$this->data['buku'] =  $this->db->query("SELECT * FROM tbl_buku ORDER BY id_buku ASC")->result_array();
 		} else {
 			echo '<script>alert("BUKU RUSAK TIDAK DITEMUKAN");window.location="' . base_url('data/buku_rusak') . '"</script>';
 		}
@@ -571,6 +556,7 @@ class Data extends CI_Controller
 
 		$this->data['kats'] =  $this->db->query("SELECT * FROM tbl_kategori ORDER BY id_kategori DESC")->result_array();
 		$this->data['rakbuku'] =  $this->db->query("SELECT * FROM tbl_rak ORDER BY id_rak DESC")->result_array();
+		$this->data['buku'] =  $this->db->query("SELECT * FROM tbl_buku ORDER BY id_buku ASC")->result_array();
 
 
 		$this->data['title_web'] = 'Tambah Buku Rusak';
@@ -626,6 +612,7 @@ class Data extends CI_Controller
 					'buku_rusak_id' => $buku_rusak_id,
 					'id_kategori' => htmlentities($post['kategori']),
 					'id_rak' => htmlentities($post['rak']),
+					'id_buku' => htmlentities($post['buku']),
 					'isbn' => htmlentities($post['isbn']),
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
@@ -648,6 +635,7 @@ class Data extends CI_Controller
 					'buku_rusak_id' => $buku_rusak_id,
 					'id_kategori' => htmlentities($post['kategori']),
 					'id_rak' => htmlentities($post['rak']),
+					'id_buku' => htmlentities($post['buku']),
 					'isbn' => htmlentities($post['isbn']),
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
@@ -676,6 +664,7 @@ class Data extends CI_Controller
 					'buku_rusak_id' => $buku_rusak_id,
 					'id_kategori' => htmlentities($post['kategori']),
 					'id_rak' => htmlentities($post['rak']),
+					'id_buku' => htmlentities($post['buku']),
 					'isbn' => htmlentities($post['isbn']),
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
@@ -690,6 +679,7 @@ class Data extends CI_Controller
 					'buku_rusak_id' => $buku_rusak_id,
 					'id_kategori' => htmlentities($post['kategori']),
 					'id_rak' => htmlentities($post['rak']),
+					'id_buku' => htmlentities($post['buku']),
 					'isbn' => htmlentities($post['isbn']),
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
@@ -747,6 +737,7 @@ class Data extends CI_Controller
 				$data = array(
 					'id_kategori' => htmlentities($post['kategori']),
 					'id_rak' => htmlentities($post['rak']),
+					'id_buku' => htmlentities($post['buku']),
 					'isbn' => htmlentities($post['isbn']),
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
@@ -775,6 +766,7 @@ class Data extends CI_Controller
 				$data = array(
 					'id_kategori' => htmlentities($post['kategori']),
 					'id_rak' => htmlentities($post['rak']),
+					'id_buku' => htmlentities($post['buku']),
 					'isbn' => htmlentities($post['isbn']),
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
@@ -808,6 +800,7 @@ class Data extends CI_Controller
 				$data = array(
 					'id_kategori' => htmlentities($post['kategori']),
 					'id_rak' => htmlentities($post['rak']),
+					'id_buku' => htmlentities($post['buku']),
 					'isbn' => htmlentities($post['isbn']),
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
@@ -821,6 +814,7 @@ class Data extends CI_Controller
 				$data = array(
 					'id_kategori' => htmlentities($post['kategori']),
 					'id_rak' => htmlentities($post['rak']),
+					'id_buku' => htmlentities($post['buku']),
 					'isbn' => htmlentities($post['isbn']),
 					'title'  => htmlentities($post['title']),
 					'pengarang' => htmlentities($post['pengarang']),
@@ -971,7 +965,8 @@ class Data extends CI_Controller
 					'pengarang_ebook' => htmlentities($post['pengarang_ebook']),
 					'penerbit_ebook' => htmlentities($post['penerbit_ebook']),
 					'isi' => $this->input->post('isi'),
-					'nama_file' => $this->input->post('nama_file')
+					'nama_file' => $this->input->post('nama_file'),
+					'tgl_masuk' => date('Y-m-d H:i:s')
 				);
 			} elseif (!empty($_FILES['gambar']['name'])) {
 				$this->upload->initialize($config);
@@ -990,7 +985,8 @@ class Data extends CI_Controller
 					'pengarang_ebook' => htmlentities($post['pengarang_ebook']),
 					'penerbit_ebook' => htmlentities($post['penerbit_ebook']),
 					'isi' => $this->input->post('isi'),
-					'nama_file' => $this->input->post('nama_file')
+					'nama_file' => $this->input->post('nama_file'),
+					'tgl_masuk' => date('Y-m-d H:i:s')
 				);
 			} elseif (!empty($_FILES['lampiran']['name'])) {
 
@@ -1004,7 +1000,8 @@ class Data extends CI_Controller
 					'pengarang_ebook' => htmlentities($post['pengarang_ebook']),
 					'penerbit_ebook' => htmlentities($post['penerbit_ebook']),
 					'isi' => $this->input->post('isi'),
-					'nama_file' => $this->input->post('nama_file')
+					'nama_file' => $this->input->post('nama_file'),
+					'tgl_masuk' => date('Y-m-d H:i:s')
 				);
 			} else {
 				$data = array(
@@ -1015,7 +1012,8 @@ class Data extends CI_Controller
 					'pengarang_ebook' => htmlentities($post['pengarang_ebook']),
 					'penerbit_ebook' => htmlentities($post['penerbit_ebook']),
 					'isi' => $this->input->post('isi'),
-					'nama_file' => $this->input->post('nama_file')
+					'nama_file' => $this->input->post('nama_file'),
+					'tgl_masuk' => date('Y-m-d H:i:s')
 
 				);
 			}
@@ -1056,23 +1054,23 @@ class Data extends CI_Controller
 
 				$data = array(
 					'id_kategori_ebook' => htmlentities($post['kategori_ebook']),
-					'sampul' => $file1['upload_data']['file_name'],
 					'judul_ebook'  => htmlentities($post['judul_ebook']),
 					'pengarang_ebook' => htmlentities($post['pengarang_ebook']),
 					'penerbit_ebook' => htmlentities($post['penerbit_ebook']),
 					'isi' => $this->input->post('isi'),
-					'nama_file' => $this->input->post('nama_file')
+					'nama_file' => $this->input->post('nama_file'),
+					'tgl_masuk' => date('Y-m-d H:i:s')
 
 				);
 			} else {
 				$data = array(
 					'id_kategori_ebook' => htmlentities($post['kategori_ebook']),
-					'sampul' => $file1['upload_data']['file_name'],
 					'judul_ebook'  => htmlentities($post['judul_ebook']),
 					'pengarang_ebook' => htmlentities($post['pengarang_ebook']),
 					'penerbit_ebook' => htmlentities($post['penerbit_ebook']),
 					'isi' => $this->input->post('isi'),
-					'nama_file' => $this->input->post('nama_file')
+					'nama_file' => $this->input->post('nama_file'),
+					'tgl_masuk' => date('Y-m-d H:i:s')
 				);
 			}
 
@@ -1149,6 +1147,163 @@ class Data extends CI_Controller
 			<p> Hapus Kategori Ebook Sukses !</p>
 			</div></div>');
 			redirect(base_url('data/kategori_ebook'));
+		}
+	}
+
+
+
+
+	//mailbox
+	public function mailbox()
+	{
+		$this->data['title_web'] = 'Data Mailbox';
+		$this->data['idbo'] = $this->session->userdata('ses_id');
+		$this->data['mailbox'] = $this->db->query("SELECT DISTINCT `id_mailbox`,`mailbox_id`, `buku_id`, `anggota_id`, 
+		`status`, `tgl_transaksi` FROM tbl_mailbox ORDER BY id_mailbox DESC");
+
+		$this->load->view('header_view', $this->data);
+		$this->load->view('sidebar_view', $this->data);
+		$this->load->view('mailbox/mailbox_view', $this->data);
+		$this->load->view('footer_view', $this->data);
+	}
+
+	public function mailboxtambah()
+	{
+
+		$this->data['nomb'] = $this->M_Admin->buat_kode('tbl_mailbox', 'MB', 'id_mailbox', 'ORDER BY id_mailbox DESC LIMIT 1');
+		$this->data['idbo'] = $this->session->userdata('ses_id');
+		$this->data['user'] = $this->M_Admin->get_table('tbl_login');
+		$this->data['mailbox'] =  $this->db->query("SELECT * FROM tbl_mailbox ORDER BY id_mailbox DESC");
+		$this->data['buku'] =  $this->db->query("SELECT * FROM tbl_buku ORDER BY id_buku DESC");
+
+		$this->data['title_web'] = 'Pesan Buku ';
+
+		$this->load->view('header_view', $this->data);
+		$this->load->view('sidebar_view', $this->data);
+		$this->load->view('mailbox/tambah_view', $this->data);
+		$this->load->view('footer_view', $this->data);
+	}
+
+	public function mailboxdetail()
+	{
+		$this->data['idbo'] = $this->session->userdata('ses_id');
+		$id = $this->uri->segment('3');
+		$this->data['user'] = $this->M_Admin->get_table('tbl_login');
+		$count = $this->M_Admin->CountTableId('tbl_mailbox', 'mailbox_id', $id);
+		if ($count > 0) {
+			$this->data['mailbox'] = $this->db->query("SELECT DISTINCT `mailbox_id`, 
+			`buku_id`, 
+			`anggota_id`, `status`, 
+			`tgl_transaksi` 
+			FROM tbl_mailbox WHERE mailbox_id = '$id'")->row();
+		} else {
+			echo '<script>alert("DETAIL TIDAK DITEMUKAN");window.location="' . base_url('data/mailbox') . '"</script>';
+		}
+
+		$this->data['buku'] =  $this->db->query("SELECT * FROM tbl_buku ORDER BY id_buku DESC");
+
+		$this->data['title_web'] = 'Detail Mailbox Buku ';
+		$this->load->view('header_view', $this->data);
+		$this->load->view('sidebar_view', $this->data);
+		$this->load->view('mailbox/detail', $this->data);
+		$this->load->view('footer_view', $this->data);
+	}
+
+	public function mailboxedit()
+	{
+		$this->data['idbo'] = $this->session->userdata('ses_id');
+		$id = $this->uri->segment('3');
+		$this->data['user'] = $this->M_Admin->get_table('tbl_login');
+		$this->data['buku'] = $this->db->query("SELECT * FROM tbl_buku ORDER BY id_buku DESC");
+		$count = $this->M_Admin->CountTableId('tbl_mailbox', 'mailbox_id', $id);
+		if ($count > 0) {
+			$this->data['mailbox'] = $this->db->query("SELECT DISTINCT `mailbox_id`, 
+			`buku_id`, 
+			`anggota_id`, `status`, 
+			`tgl_transaksi` 
+			FROM tbl_mailbox WHERE mailbox_id = '$id'")->row();
+		} else {
+			echo '<script>alert("EDIT TIDAK DITEMUKAN");window.location="' . base_url('data/mailbox') . '"</script>';
+		}
+		$this->data['title_web'] = 'Edit Transaksi Buku ';
+		$this->load->view('header_view', $this->data);
+		$this->load->view('sidebar_view', $this->data);
+		$this->load->view('mailbox/edit_view', $this->data);
+		$this->load->view('footer_view', $this->data);
+	}
+	public function prosesmailbox()
+	{
+		$post = $this->input->post();
+
+		if (!empty($post['tambah'])) {
+
+			$tgl = $post['tgl_transaksi'];
+
+			$hasil_cart = array_values(unserialize($this->session->userdata('cart')));
+			foreach ($hasil_cart as $isi) {
+				$data[] = array(
+					'mailbox_id' => htmlentities($post['nomb']),
+					'anggota_id' => htmlentities($post['anggota_id']),
+					'buku_id' => $isi['id'],
+					'status' => htmlentities($post['status']),
+					'tgl_transaksi' => htmlentities($post['tgl_transaksi'])
+				);
+			}
+			$total_array = count($data);
+			if ($total_array != 0) {
+				$this->db->insert_batch('tbl_mailbox', $data);
+
+				$cart = array_values(unserialize($this->session->userdata('cart')));
+				for ($i = 0; $i < count($cart); $i++) {
+					unset($cart[$i]);
+					$this->session->unset_userdata($cart[$i]);
+					$this->session->unset_userdata('cart');
+				}
+			}
+
+			$this->session->set_flashdata('pesan', '<div id="notifikasi"><div class="alert alert-success">
+			<p> Pesan Buku Sukses Silahkan Datang Ke Perpus Yah!</p>
+			</div></div>');
+			redirect(base_url('data/mailbox'));
+		}
+
+		if ($this->input->get('id_mailbox')) {
+			$this->M_Admin->delete_table('tbl_mailbox', 'id_mailbox', $this->input->get('id_mailbox'));
+
+			$this->session->set_flashdata('pesan', '<div id="notifikasi"><div class="alert alert-warning">
+			<p>  Hapus Transaksi Pinjam Buku Sukses !</p>
+			</div></div>');
+			redirect(base_url('data/mailbox'));
+		}
+
+		if (!empty($this->input->post('edit'))) {
+			$post = $this->input->post();
+
+			// upload gambar 1
+			if (!empty($_FILES['gambar']['name'])) {
+				if ($this->upload->do_upload('gambar')) {
+					$this->upload->data();
+					$file1 = array('upload_data' => $this->upload->data());
+				} else {
+					return false;
+				}
+				if ($this->upload->data()) {
+				}
+				$data = array(
+					'status' => htmlentities($post['status'])
+
+				);
+			} else {
+				$data = array(
+					'status' => htmlentities($post['status'])
+				);
+			};
+			$this->db->where('mailbox_id', htmlentities($post['mailbox_id']));
+			$this->db->update('tbl_mailbox', $data);
+			$this->session->set_flashdata('pesan', '<div id="notifikasi"><div class="alert alert-success">
+		<p> Edit Pesan Buku Sukses !</p>
+		</div></div>');
+			redirect(base_url('data/mailbox'));
 		}
 	}
 }

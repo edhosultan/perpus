@@ -53,13 +53,14 @@
 <body>
     <img src="assets_style/image/logonih.jpg" style="float: left;height: 80px">
     <div style="font-size: 15px;text-align:center">
-        <p>PEMERINTAH KABUPATEN KOTABARU
+        <h2>PEMERINTAH KABUPATEN KOTABARU
             <br>
             DINAS PENDIDIKAN DAN KEBUDAYAAN
             <br>
             SMPN 2 KOTABARU
             <br>
-            NSS/NIS/NPSN : 201150901002/200020/30303290
+        </h2>
+        <p>NSS/NIS/NPSN : 201150901002/200020/30303290
             <br>
             Jl.Perikanan Telp.(0518)21714 KP.72116 Kab.Kotabaru
             <br>
@@ -67,6 +68,23 @@
         </p>
     </div>
     <hr style="border: 0.5px solid black; margin: 10px 5px 10px 5px;">
+    <?php
+    // Koneksi
+    $koneksi = mysqli_connect('localhost', 'root', '', 'projek_perpus');
+    // Koneksi
+
+    if (!empty($_GET['tahun'])) {
+
+        $tahun = $_GET['tahun'];
+        $query = "SELECT * FROM tbl_login WHERE year(tgl_bergabung)='$tahun'";
+        $stmt = mysqli_query($koneksi, $query);
+        $rows = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
+    } else {
+        $query = "SELECT * FROM tbl_login";
+        $stmt = mysqli_query($koneksi, $query);
+        $rows = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
+    }
+    ?>
     <br>
     <table class="table table-bordered" style="width:100%;">
         <thead>
@@ -87,19 +105,19 @@
         <tbody>
             <?php $no = 1;
 
-            foreach ($login as $isi) {
+            foreach ($rows as $row) {
             ?>
                 <tr>
                     <td><?php echo $no ?></td>
-                    <td><?php echo $isi['anggota_id'] ?></td>
-                    <td><?php echo $isi['nama'] ?></td>
-                    <td><?php echo $isi['tempat_lahir'] ?></td>
-                    <td><?php echo date("d-m-Y", strtotime($isi['tgl_lahir'])) ?></td>
-                    <td><?php echo $isi['jenkel'] ?></td>
-                    <td><?php echo $isi['alamat'] ?></td>
-                    <td><?php echo $isi['telepon'] ?></td>
-                    <td><?php echo $isi['email'] ?></td>
-                    <td><?php echo date("d-m-Y", strtotime($isi['tgl_bergabung'])) ?></td>
+                    <td><?php echo $row['anggota_id'] ?></td>
+                    <td><?php echo $row['nama'] ?></td>
+                    <td><?php echo $row['tempat_lahir'] ?></td>
+                    <td><?php echo date("d-m-Y", strtotime($row['tgl_lahir'])) ?></td>
+                    <td><?php echo $row['jenkel'] ?></td>
+                    <td><?php echo $row['alamat'] ?></td>
+                    <td><?php echo $row['telepon'] ?></td>
+                    <td><?php echo $row['email'] ?></td>
+                    <td><?php echo date("d-m-Y", strtotime($row['tgl_bergabung'])) ?></td>
                 </tr>
             <?php $no++;
             } ?>

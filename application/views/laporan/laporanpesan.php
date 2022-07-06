@@ -53,12 +53,14 @@
 <body>
     <img src="assets_style/image/logonih.jpg" style="float: left;height: 80px">
     <div style="font-size: 15px;text-align:center">
-        <p>PEMERINTAH KABUPATEN KOTABARU
+        <h2> PEMERINTAH KABUPATEN KOTABARU
             <br>
             DINAS PENDIDIKAN DAN KEBUDAYAAN
             <br>
             SMPN 2 KOTABARU
             <br>
+        </h2>
+        <p>
             NSS/NIS/NPSN : 201150901002/200020/30303290
             <br>
             Jl.Perikanan Telp.(0518)21714 KP.72116 Kab.Kotabaru
@@ -67,6 +69,23 @@
         </p>
     </div>
     <hr style="border: 0.5px solid black; margin: 10px 5px 10px 5px;">
+    <?php
+    // Koneksi
+    $koneksi = mysqli_connect('localhost', 'root', '', 'projek_perpus');
+    // Koneksi
+
+    if (!empty($_GET['tahun'])) {
+
+        $tahun = $_GET['tahun'];
+        $query = "SELECT * FROM tbl_mailbox WHERE year(tgl_transaksi)='$tahun'";
+        $stmt = mysqli_query($koneksi, $query);
+        $rows = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
+    } else {
+        $query = "SELECT * FROM tbl_mailbox";
+        $stmt = mysqli_query($koneksi, $query);
+        $rows = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
+    }
+    ?>
     <br>
     <table class="table table-bordered" style="width:100%;">
         <thead>

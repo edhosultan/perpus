@@ -14,6 +14,7 @@ class Dashboard extends CI_Controller
 			$url = base_url('login');
 			redirect($url);
 		}
+		$this->load->model('M_Statis');
 	}
 	/**
 	 * Index Page for this controller.
@@ -39,8 +40,11 @@ class Dashboard extends CI_Controller
 		$this->data['count_ebook'] = $this->db->query("SELECT * FROM tbl_ebook")->num_rows();
 		$this->data['count_pinjam'] = $this->db->query("SELECT * FROM tbl_pinjam WHERE status = 'Dipinjam'")->num_rows();
 		$this->data['count_kembali'] = $this->db->query("SELECT * FROM tbl_pinjam WHERE status = 'Di Kembalikan'")->num_rows();
-		$this->data['count_mailbox'] = $this->db->query("SELECT * FROM tbl_mailbox WHERE status = 'dipesan'")->num_rows();
-		$this->data['buku'] = $this->M_Admin->get_buku();
+		$this->data['count_mailbox'] = $this->db->query("SELECT * FROM tbl_mailbox")->num_rows();
+		$this->data['buku'] = $this->M_Admin->get_table('tbl_buku');
+		$this->data['user'] = $this->M_Admin->get_table('tbl_login');
+		// $this->data['top3buku'] = $this->M_Statis->top3buku()->result();
+		// $this->data['top3anggota'] = $this->M_Statis->top3anggota()->result();
 		$this->load->view('header_view', $this->data);
 		$this->load->view('sidebar_view', $this->data);
 		$this->load->view('dashboard_view', $this->data);
