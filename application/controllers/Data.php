@@ -1161,6 +1161,8 @@ class Data extends CI_Controller
 		$this->data['mailbox'] = $this->db->query("SELECT DISTINCT `id_mailbox`,`mailbox_id`, `buku_id`, `anggota_id`, 
 		`status`, `tgl_transaksi` FROM tbl_mailbox ORDER BY id_mailbox DESC");
 
+		$this->data['user'] = $this->M_Admin->get_table('tbl_login');
+
 		$this->load->view('header_view', $this->data);
 		$this->load->view('sidebar_view', $this->data);
 		$this->load->view('mailbox/mailbox_view', $this->data);
