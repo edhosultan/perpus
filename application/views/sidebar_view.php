@@ -271,6 +271,16 @@
                 <i class="fa fa-print"></i> <span>Cetak Laporan Mailbox</span>
               </a>
             </li>
+            <li class="">
+              <a href="<?php echo base_url('laporan/laporantop10_view'); ?>" class="cursor">
+                <i class="fa fa-print"></i> <span>Cetak Top 10 Anggota</span>
+              </a>
+            </li>
+            <li class="">
+              <a href="<?php echo base_url('laporan/laporantopbuku10_view'); ?>" class="cursor">
+                <i class="fa fa-print"></i> <span>Cetak Top 10 Buku</span>
+              </a>
+            </li>
           </ul>
 
         </li>

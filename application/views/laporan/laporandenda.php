@@ -103,6 +103,11 @@
         <tbody>
             <?php $no = 1;
 
+            $jumlahtotal = 0;
+            usort($denda, function ($item1, $item2) {
+                return $item2['jumlah'] <=> $item1['jumlah'];
+            });
+
             foreach ($denda as $isi) {
             ?>
                 <tr>
@@ -110,13 +115,26 @@
                     <td><?php echo $isi['id_denda'] ?></td>
                     <td><?php echo $isi['pinjam_id'] ?></td>
                     <td><?php echo $isi['nama'] ?></td>
-                    <td><?php echo $isi['denda'] ?></td>
+                    <td>Rp.<?php echo $isi['denda'] ?></td>
                     <td><?php echo $isi['lama_waktu'] ?>Hari</td>
                     <td><?php echo date("d-m-Y", strtotime($isi['tgl_denda'])) ?></td>
                 </tr>
             <?php $no++;
+
+                $jumlahtotal += $isi['jumlah'];
             } ?>
         </tbody>
+        <thead>
+            <tr>
+                <th>Jumlah Total Denda</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <td>Rp.<?php echo $jumlahtotal; ?></td>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
     </table>
     <br>
     <br>

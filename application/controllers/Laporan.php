@@ -87,6 +87,25 @@ class Laporan extends CI_Controller
         $mpdf->WriteHTML($pdf);
         $mpdf->Output();
     }
+    function laporantop10()
+    {
+        $mpdf = new \Mpdf\mpdf();
+        $this->data["top10"] = $this->M_login->GET_TOP10();
+        $this->data['title_web'] = 'Laporan Top 10 Anggota';
+        $pdf = $this->load->view('laporan/laporantop10', $this->data, TRUE);
+        $mpdf->WriteHTML($pdf);
+        $mpdf->Output();
+    }
+    function laporantopbuku10()
+    {
+        $mpdf = new \Mpdf\mpdf();
+        $this->data["topbuku10"] = $this->M_login->GET_TOPBUKU10();
+        $this->data['title_web'] = 'Laporan Top 10 Buku';
+        $pdf = $this->load->view('laporan/laporantopbuku10', $this->data, TRUE);
+        $mpdf->WriteHTML($pdf);
+        $mpdf->Output();
+    }
+    //view
     function laporananggota_view()
     {
         $this->data['idbo'] = $this->session->userdata('ses_id');
@@ -157,6 +176,24 @@ class Laporan extends CI_Controller
         $this->load->view('header_view', $this->data);
         $this->load->view('sidebar_view', $this->data);
         $this->load->view('laporan/laporanrusak_view', $this->data);
+        $this->load->view('footer_view', $this->data);
+    }
+    function laporantop10_view()
+    {
+        $this->data['idbo'] = $this->session->userdata('ses_id');
+        $this->data['title_web'] = 'Laporan Top 10';
+        $this->load->view('header_view', $this->data);
+        $this->load->view('sidebar_view', $this->data);
+        $this->load->view('laporan/laporantop10_view', $this->data);
+        $this->load->view('footer_view', $this->data);
+    }
+    function laporantopbuku10_view()
+    {
+        $this->data['idbo'] = $this->session->userdata('ses_id');
+        $this->data['title_web'] = 'Laporan Top 10';
+        $this->load->view('header_view', $this->data);
+        $this->load->view('sidebar_view', $this->data);
+        $this->load->view('laporan/laporantopbuku10_view', $this->data);
         $this->load->view('footer_view', $this->data);
     }
 }

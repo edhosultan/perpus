@@ -41,7 +41,7 @@ class Login extends CI_Controller
         $row = $proses_login->num_rows();
         if ($row > 0) {
             $hasil_login = $proses_login->row_array();
-
+            $this->M_login->SET_KUNJUNGAN($hasil_login['anggota_id']);
             // create session
             $this->session->set_userdata('masuk_sistem_rekam', TRUE);
             $this->session->set_userdata('level', $hasil_login['level']);

@@ -97,10 +97,16 @@
                 <th>Buku Id</th>
                 <th>Tanggal Batas</th>
                 <th>Tanggal Kembali</th>
+                <th>Jumlah Kembali</th>
             </tr>
         </thead>
         <tbody>
             <?php $no = 1;
+
+            $jumlahtotal = 0;
+            usort($kembali, function ($item1, $item2) {
+                return $item2['jumlah'] <=> $item1['jumlah'];
+            });
 
             foreach ($kembali as $isi) {
             ?>
@@ -111,10 +117,25 @@
                     <td><?php echo $isi['buku_id'] ?></td>
                     <td><?php echo date("d-m-Y", strtotime($isi['tgl_balik'])) ?></td>
                     <td><?php echo date("d-m-Y", strtotime($isi['tgl_kembali'])) ?></td>
+                    <td><?php echo $isi['jumlah'] ?></td>
                 </tr>
             <?php $no++;
+
+
+                $jumlahtotal += $isi['jumlah'];
             } ?>
         </tbody>
+        <thead>
+            <tr>
+                <th>Jumlah Total</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <td><?php echo $jumlahtotal; ?></td>
+            </tr>
+        </thead>
     </table>
     <br>
     <br>

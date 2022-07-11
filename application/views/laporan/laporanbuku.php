@@ -106,6 +106,10 @@
         </thead>
         <tbody>
             <?php $no = 1;
+            $jumlahtotal = 0;
+            usort($book, function ($item1, $item2) {
+                return $item2['jumlah'] <=> $item1['jumlah'];
+            });
 
             foreach ($book as $isi) {
             ?>
@@ -123,8 +127,24 @@
                     <td><?php echo date("d-m-Y", strtotime($isi['tgl_masuk'])) ?></td>
                 </tr>
             <?php $no++;
+                $jumlahtotal += $isi['jumlah'];
             } ?>
         </tbody>
+        <thead>
+            <tr>
+                <th>Jumlah Total</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <td><?php echo $jumlahtotal; ?></td>
+                <th></th>
+            </tr>
+        </thead>
     </table>
     <br>
     <br>

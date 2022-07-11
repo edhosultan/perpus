@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-    <title>Cetak PDF Laporan Ebook</title>
+    <title>Cetak PDF Laporan TOP 10 Anggota</title>
     <style>
         h3 {
             font-size: 20px;
@@ -53,15 +54,14 @@
 <body>
     <img src="assets_style/image/logonih.jpg" style="float: left;height: 80px">
     <div style="font-size: 15px;text-align:center">
-        <h2> PEMERINTAH KABUPATEN KOTABARU
+        <h2>PEMERINTAH KABUPATEN KOTABARU
             <br>
             DINAS PENDIDIKAN DAN KEBUDAYAAN
             <br>
             SMPN 2 KOTABARU
             <br>
         </h2>
-        <p>
-            NSS/NIS/NPSN : 201150901002/200020/30303290
+        <p>NSS/NIS/NPSN : 201150901002/200020/30303290
             <br>
             Jl.Perikanan Telp.(0518)21714 KP.72116 Kab.Kotabaru
             <br>
@@ -77,11 +77,11 @@
     if (!empty($_GET['tahun'])) {
 
         $tahun = $_GET['tahun'];
-        $query = "SELECT * FROM tbl_ebook WHERE year(tgl_masuk)='$tahun'";
+        $query = "SELECT * FROM tbl_login WHERE year(tgl_bergabung)='$tahun'";
         $stmt = mysqli_query($koneksi, $query);
         $rows = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
     } else {
-        $query = "SELECT * FROM tbl_ebook";
+        $query = "SELECT * FROM tbl_login";
         $stmt = mysqli_query($koneksi, $query);
         $rows = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
     }
@@ -92,49 +92,37 @@
             <tr>
 
                 <th>No</th>
-                <th>Id Ebook</th>
-                <th>Ebook Id</th>
-                <th>Id Kategori Ebook</th>
-                <th>Kategori Ebook</th>
-                <th>Judul</th>
-                <th>Penerbit</th>
-                <th>Pengarang</th>
-                <th>Tanggal Masuk</th>
-                <th>Jumlah Ebook</th>
+                <th>Anggota Id</th>
+                <th>Nama Anggota</th>
+                <th>Alamat</th>
+                <th>Telepon</th>
+                <th>Jumlah Kunjungan</th>
             </tr>
         </thead>
         <tbody>
             <?php $no = 1;
             $jumlahtotal = 0;
-            usort($ebook, function ($item1, $item2) {
+            usort($top10, function ($item1, $item2) {
                 return $item2['jumlah'] <=> $item1['jumlah'];
             });
-            foreach ($ebook as $isi) {
+            foreach ($top10 as $row) {
+                if ($no > 10) break;
             ?>
                 <tr>
                     <td><?php echo $no ?></td>
-                    <td><?php echo $isi['id_ebook'] ?></td>
-                    <td><?php echo $isi['ebook_id'] ?></td>
-                    <td><?php echo $isi['id_kategori_ebook'] ?></td>
-                    <td><?php echo $isi['nama_kategori_ebook'] ?></td>
-                    <td><?php echo $isi['judul_ebook'] ?></td>
-                    <td><?php echo $isi['penerbit_ebook'] ?></td>
-                    <td><?php echo $isi['pengarang_ebook'] ?></td>
-                    <td><?php echo $isi['tgl_masuk'] ?></td>
-                    <td><?php echo $isi['jumlah'] ?></td>
-
+                    <td><?php echo $row['anggota_id'] ?></td>
+                    <td><?php echo $row['nama'] ?></td>
+                    <td><?php echo $row['alamat'] ?></td>
+                    <td><?php echo $row['telepon'] ?></td>
+                    <td><?php echo $row['jumlah'] ?></td>
                 </tr>
             <?php $no++;
-                $jumlahtotal += $isi['jumlah'];
+                $jumlahtotal += $row['jumlah'];
             } ?>
         </tbody>
         <thead>
             <tr>
                 <th>Jumlah Total</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -159,7 +147,7 @@
     </div>
     <hr style="border: 0.5px solid black; margin: 10px 5px 10px 5px;">
     <div style="margin-left: 20px">
-        <div style="font-size: 18px">Laporan Data Ebook
+        <div style="font-size: 18px">Laporan Data Anggota
         </div>
     </div>
 </body>
