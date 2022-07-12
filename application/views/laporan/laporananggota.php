@@ -100,12 +100,18 @@
                 <th>Telepon</th>
                 <th>Email</th>
                 <th>tanggal bergabung</th>
+                <th>Total Bergabung</th>
             </tr>
         </thead>
         <tbody>
             <?php $no = 1;
+            $jumlahtotal = 0;
+            usort($login, function ($item1, $item2) {
+                return $item2['jumlah'] <=> $item1['jumlah'];
+            });
 
-            foreach ($rows as $row) {
+
+            foreach ($login as $row) {
             ?>
                 <tr>
                     <td><?php echo $no ?></td>
@@ -118,10 +124,28 @@
                     <td><?php echo $row['telepon'] ?></td>
                     <td><?php echo $row['email'] ?></td>
                     <td><?php echo date("d-m-Y", strtotime($row['tgl_bergabung'])) ?></td>
+                    <th></th>
                 </tr>
             <?php $no++;
+
+                $jumlahtotal += $row['jumlah'];
             } ?>
         </tbody>
+        <thead>
+            <tr>
+                <th>Total Bergabung</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <td><?php echo $jumlahtotal; ?></td>
+            </tr>
+        </thead>
     </table>
     <br>
     <br>

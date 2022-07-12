@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Cetak PDF Laporan TOP 10 Anggota</title>
+    <title>Cetak PDF Laporan TOP 10 Kunjungan</title>
     <style>
         h3 {
             font-size: 20px;
@@ -147,7 +147,7 @@
     </div>
     <hr style="border: 0.5px solid black; margin: 10px 5px 10px 5px;">
     <div style="margin-left: 20px">
-        <div style="font-size: 18px">Laporan Data Anggota
+        <div style="font-size: 18px">Laporan Data Kunjungan
         </div>
     </div>
 </body>

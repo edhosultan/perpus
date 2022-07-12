@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-    <title>Cetak PDF Laporan Rusak</title>
+    <title>Cetak PDF Laporan TOP 10 Peminjam</title>
     <style>
         h3 {
             font-size: 20px;
@@ -60,8 +61,7 @@
             SMPN 2 KOTABARU
             <br>
         </h2>
-        <p>
-            NSS/NIS/NPSN : 201150901002/200020/30303290
+        <p>NSS/NIS/NPSN : 201150901002/200020/30303290
             <br>
             Jl.Perikanan Telp.(0518)21714 KP.72116 Kab.Kotabaru
             <br>
@@ -77,11 +77,11 @@
     if (!empty($_GET['tahun'])) {
 
         $tahun = $_GET['tahun'];
-        $query = "SELECT * FROM tbl_buku_rusak WHERE year(tgl_masuk)='$tahun'";
+        $query = "SELECT * FROM tbl_pinjam WHERE year(tgl_pinjam)='$tahun'";
         $stmt = mysqli_query($koneksi, $query);
         $rows = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
     } else {
-        $query = "SELECT * FROM tbl_buku_rusak";
+        $query = "SELECT * FROM tbl_pinjam";
         $stmt = mysqli_query($koneksi, $query);
         $rows = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
     }
@@ -92,43 +92,34 @@
             <tr>
 
                 <th>No</th>
-                <th>Buku Rusak Id</th>
-                <th>Kategori</th>
-                <th>Rak</th>
-                <th>ISBN</th>
-                <th>Judul</th>
-                <th>Penerbit</th>
-                <th>Pengarang</th>
-                <th>Tahun Buku</th>
-                <th>Jumlah Rusak</th>
-                <th>Tanggal Masuk</th>
+                <th>Anggota Id</th>
+                <th>Nama Anggota</th>
+                <th>Alamat</th>
+                <th>Telepon</th>
+                <th>Tanggal Pinjam</th>
+                <th>Jumlah Peminjaman</th>
             </tr>
         </thead>
         <tbody>
             <?php $no = 1;
-
             $jumlahtotal = 0;
-            usort($rusak, function ($item1, $item2) {
+            usort($topanggota10, function ($item1, $item2) {
                 return $item2['jumlah'] <=> $item1['jumlah'];
             });
-            foreach ($rusak as $isi) {
+            foreach ($topanggota10 as $row) {
+                if ($no > 10) break;
             ?>
                 <tr>
                     <td><?php echo $no ?></td>
-                    <td><?php echo $isi['buku_rusak_id'] ?></td>
-                    <td><?php echo $isi['nama_kategori'] ?></td>
-                    <td><?php echo $isi['nama_rak'] ?></td>
-                    <td><?php echo $isi['isbn'] ?></td>
-                    <td><?php echo $isi['title'] ?></td>
-                    <td><?php echo $isi['penerbit'] ?></td>
-                    <td><?php echo $isi['pengarang'] ?></td>
-                    <td><?php echo date("d-m-Y", strtotime($isi['thn_buku'])) ?></td>
-                    <td><?php echo $isi['jml_rusak'] ?></td>
-                    <td><?php echo date("d-m-Y", strtotime($isi['tgl_masuk'])) ?></td>
+                    <td><?php echo $row['anggota_id'] ?></td>
+                    <td><?php echo $row['nama'] ?></td>
+                    <td><?php echo $row['alamat'] ?></td>
+                    <td><?php echo $row['telepon'] ?></td>
+                    <td><?php echo $row['tgl_pinjam'] ?></td>
+                    <td><?php echo $row['jumlah'] ?></td>
                 </tr>
             <?php $no++;
-
-                $jumlahtotal += $isi['jumlah'];
+                $jumlahtotal += $row['jumlah'];
             } ?>
         </tbody>
         <thead>
@@ -139,11 +130,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
                 <td><?php echo $jumlahtotal; ?></td>
-                <th></th>
             </tr>
         </thead>
     </table>
@@ -163,7 +150,7 @@
     </div>
     <hr style="border: 0.5px solid black; margin: 10px 5px 10px 5px;">
     <div style="margin-left: 20px">
-        <div style="font-size: 18px">Laporan Data Buku Rusak
+        <div style="font-size: 18px">Laporan Top 10 Anggota Peminjam Terajin
         </div>
     </div>
 </body>

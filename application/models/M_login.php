@@ -17,7 +17,7 @@ class M_Login extends CI_Model
   }
   function GET_ALL()
   {
-    $allusers = $this->db->get("tbl_login");
+    $allusers = $this->db->query("SELECT anggota_id,nama,tempat_lahir,jenkel,tgl_lahir,tgl_bergabung,alamat,telepon,email,COUNT(anggota_id)as jumlah FROM tbl_login GROUP BY tbl_login.anggota_id");
     return $allusers->result_array();
   }
   function GET_BOOK()
@@ -47,7 +47,7 @@ class M_Login extends CI_Model
   }
   function GET_RUSAK()
   {
-    $allrusak = $this->db->query("SELECT * FROM tbl_buku_rusak JOIN tbl_kategori ON tbl_kategori.id_kategori = tbl_buku_rusak.id_kategori JOIN tbl_rak ON tbl_rak.id_rak = tbl_buku_rusak.id_rak JOIN tbl_buku ON tbl_buku.id_buku = tbl_buku_rusak.id_buku");
+    $allrusak = $this->db->query("SELECT buku_rusak_id,nama_kategori,nama_rak,tbl_buku_rusak.isbn,tbl_buku_rusak.title,tbl_buku_rusak.penerbit,tbl_buku_rusak.pengarang,tbl_buku_rusak.thn_buku,tbl_buku_rusak.tgl_masuk,jml_rusak,SUM(tbl_buku_rusak.jml_rusak)as jumlah FROM tbl_buku_rusak JOIN tbl_kategori ON tbl_kategori.id_kategori = tbl_buku_rusak.id_kategori JOIN tbl_rak ON tbl_rak.id_rak = tbl_buku_rusak.id_rak JOIN tbl_buku ON tbl_buku.id_buku = tbl_buku_rusak.id_buku GROUP BY tbl_buku_rusak.buku_rusak_id");
     return $allrusak->result_array();
   }
   function GET_PESAN()
@@ -68,6 +68,11 @@ class M_Login extends CI_Model
   function GET_TOPBUKU10()
   {
     $allusers = $this->db->query("SELECT tbl_buku.buku_id,title,pengarang,penerbit,COUNT(*) as jumlah FROM tbl_pinjam JOIN tbl_buku ON tbl_buku.buku_id=tbl_pinjam.buku_id GROUP BY tbl_buku.buku_id");
+    return $allusers->result_array();
+  }
+  function GET_TOPANGGOTA10()
+  {
+    $allusers = $this->db->query("SELECT tbl_login.anggota_id,nama,alamat,telepon,tbl_pinjam.tgl_pinjam,COUNT(*) as jumlah FROM tbl_pinjam JOIN tbl_login ON tbl_login.anggota_id=tbl_pinjam.anggota_id GROUP BY tbl_login.anggota_id");
     return $allusers->result_array();
   }
   function SET_KUNJUNGAN($anggota_id)
