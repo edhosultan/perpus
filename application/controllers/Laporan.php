@@ -109,6 +109,11 @@ class Laporan extends CI_Controller
     {
         $mpdf = new \Mpdf\mpdf();
         $this->data["topanggota10"] = $this->M_login->GET_TOPANGGOTA10();
+
+        // $get_tahun = $_GET['tahun'];
+        // var_dump($_GET['tahun']);
+        // return;
+
         $this->data['title_web'] = 'Laporan Top 10 Buku';
         $pdf = $this->load->view('laporan/laporantopanggota10', $this->data, TRUE);
         $mpdf->WriteHTML($pdf);

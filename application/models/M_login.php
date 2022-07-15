@@ -72,7 +72,10 @@ class M_Login extends CI_Model
   }
   function GET_TOPANGGOTA10()
   {
-    $allusers = $this->db->query("SELECT tbl_login.anggota_id,nama,alamat,telepon,tbl_pinjam.tgl_pinjam,COUNT(*) as jumlah FROM tbl_pinjam JOIN tbl_login ON tbl_login.anggota_id=tbl_pinjam.anggota_id GROUP BY tbl_login.anggota_id");
+    $tglawal = $_POST['tanggalawal'];
+    $tglakhir = $_POST['tanggalakhir'];
+
+    $allusers = $this->db->query("SELECT tbl_login.anggota_id,nama,alamat,telepon,tbl_pinjam.tgl_pinjam,COUNT(*) as jumlah FROM tbl_pinjam JOIN tbl_login ON tbl_login.anggota_id=tbl_pinjam.anggota_id WHERE tgl_pinjam BETWEEN '$tglawal' AND '$tglakhir' GROUP BY tbl_login.anggota_id");
     return $allusers->result_array();
   }
   function SET_KUNJUNGAN($anggota_id)

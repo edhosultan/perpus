@@ -51,10 +51,10 @@
 											<td>:</td>
 											<td>
 												<div class="input-group">
-													<input type="text" class="form-control" required autocomplete="off" name="anggota_id" id="search-box" placeholder="PASTIKAN MASUKAN ID ANGGOTA MU JANGAN SALAH!!!" type="text" value="">
-													<span class="input-group-btn">
+													<input type="text" class="form-control" required autocomplete="off" name="anggota_id" id="search-box" placeholder="PASTIKAN MASUKAN ID ANGGOTA MU JANGAN SALAH!!!" type="text" value="<?= $this->session->userdata('anggota_id');  ?>">
+													<!-- <span class="input-group-btn">
 														<a data-toggle="modal" data-target="#TableAnggota" class="btn btn-primary"><i class="fa fa-search"></i></a>
-													</span>
+													</span> -->
 												</div>
 											</td>
 										</tr>
