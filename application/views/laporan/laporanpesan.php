@@ -96,6 +96,7 @@
                 <th>Mailbox Id</th>
                 <th>Buku Id</th>
                 <th>Anggota Id</th>
+                <th>Nama</th>
                 <th>Tanggal Transaksi</th>
                 <th>Jumlah</th>
             </tr>
@@ -115,6 +116,7 @@
                     <td><?php echo $isi['mailbox_id'] ?></td>
                     <td><?php echo $isi['buku_id'] ?></td>
                     <td><?php echo $isi['anggota_id'] ?></td>
+                    <td><?php echo $isi['nama'] ?></td>
                     <td><?php echo date("d-m-Y", strtotime($isi['tgl_transaksi'])) ?></td>
                     <td><?php echo $isi['jumlah'] ?></td>
                 </tr>
@@ -124,12 +126,7 @@
         </tbody>
         <thead>
             <tr>
-                <th>Jumlah Total Pesan Buku</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th colspan="7">Jumlah Total Pesan Buku</th>
                 <td><?php echo $jumlahtotal; ?></td>
             </tr>
         </thead>

@@ -100,8 +100,8 @@
                 <th>Penerbit</th>
                 <th>Pengarang</th>
                 <th>Tahun Buku</th>
-                <th>Jumlah Rusak</th>
                 <th>Tanggal Masuk</th>
+                <th>Jumlah Rusak</th>
             </tr>
         </thead>
         <tbody>
@@ -123,8 +123,8 @@
                     <td><?php echo $isi['penerbit'] ?></td>
                     <td><?php echo $isi['pengarang'] ?></td>
                     <td><?php echo date("d-m-Y", strtotime($isi['thn_buku'])) ?></td>
-                    <td><?php echo $isi['jml_rusak'] ?></td>
                     <td><?php echo date("d-m-Y", strtotime($isi['tgl_masuk'])) ?></td>
+                    <td><?php echo $isi['jml_rusak'] ?></td>
                 </tr>
             <?php $no++;
 
@@ -133,17 +133,8 @@
         </tbody>
         <thead>
             <tr>
-                <th>Jumlah Total</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th colspan="10">Jumlah Total</th>
                 <td><?php echo $jumlahtotal; ?></td>
-                <th></th>
             </tr>
         </thead>
     </table>

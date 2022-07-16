@@ -124,7 +124,7 @@
                     <td><?php echo $row['telepon'] ?></td>
                     <td><?php echo $row['email'] ?></td>
                     <td><?php echo date("d-m-Y", strtotime($row['tgl_bergabung'])) ?></td>
-                    <th></th>
+                    <th><?php echo $row['jumlah'] ?></th>
                 </tr>
             <?php $no++;
 
@@ -133,16 +133,7 @@
         </tbody>
         <thead>
             <tr>
-                <th>Total Bergabung</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th colspan="10">Total Bergabung</th>
                 <td><?php echo $jumlahtotal; ?></td>
             </tr>
         </thead>

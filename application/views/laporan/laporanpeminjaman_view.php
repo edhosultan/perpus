@@ -13,41 +13,62 @@
         <?php if (!empty($this->session->flashdata())) {
             echo $this->session->flashdata('LAPORAN');
         } ?>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <br />
-                        <div class="table-responsive">
-                            <table id="example1" class="table table-bordered table-striped table" width="100%">
-                                <tbody>
-                                    <div class="dropdown">
-                                        <center>
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Cetak Laporan Peminjaman
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="laporanpeminjaman" target="_blank" class="cursor">ALL YEAR</a>
-                                                <a class="dropdown-item" href="laporanpeminjaman?tahun=2018" target="_blank" class="cursor">2018</a>
-                                                <a class="dropdown-item" href="laporanpeminjaman?tahun=2019" target="_blank" class="cursor">2019</a>
-                                                <a class="dropdown-item" href="laporanpeminjaman?tahun=2020" target="_blank" class="cursor">2020</a>
-                                                <a class="dropdown-item" href="laporanpeminjaman?tahun=2021" target="_blank" class="cursor">2021</a>
-                                                <a class="dropdown-item" href="laporanpeminjaman?tahun=2022" target="_blank" class="cursor">2022</a>
-                                                <a class="dropdown-item" href="laporanpeminjaman?tahun=2023" target="_blank" class="cursor">2023</a>
-                                                <a class="dropdown-item" href="laporanpeminjaman?2024" target="_blank" class="cursor">2024</a>
-                                            </div>
-                                        </center>
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Laporan Data Peminjaman</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <!-- <li class="breadcrumb-item"><a href="<?= base_url('u1'); ?>">Home</a></li>
+                    <li class="breadcrumb-item active">Laporan Purchase Order</li> -->
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Horizontal Form -->
+                        <div class="card card-info">
+                            <!-- <div class="card-header">
+                        <h3 class="card-title">Per Periode</h3>
+                    </div> -->
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form class="form-horizontal" action="<?= base_url('laporan/laporanpeminjaman') ?>" method="POST" target="_blank">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <!-- <input type="hidden" name="nilaifilter" value="1"> -->
+                                        <label class="col-sm-2 col-form-label">Tanggal Awal</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" name="tanggalawal" required=""> <br>
+                                        </div>
                                     </div>
-                                    <br>
-                                    <br>
-                                </tbody>
-                            </table>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-form-label">Tanggal Akhir</label>
+                                        <div class="col-sm-10">
+                                            <input type="date" name="tanggalakhir" required=""> <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-success"><i class="fa fa-print"></i> Print</button>
+                                </div>
+                                <!-- /.card-footer -->
+                            </form>
                         </div>
+                        <!-- /.card -->
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </section>
 </div>

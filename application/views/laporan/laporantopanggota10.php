@@ -124,8 +124,8 @@
         </tbody>
         <thead>
             <tr>
-                <th colspan="3">Jumlah Total Peminjaman</th>
-                <td colspan="4"><?php echo $jumlahtotal; ?></td>
+                <th colspan="6">Jumlah Total Peminjaman</th>
+                <td><?php echo $jumlahtotal; ?></td>
             </tr>
         </thead>
     </table>

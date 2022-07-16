@@ -95,9 +95,9 @@
                 <th>Id Denda</th>
                 <th>Pinjam Id</th>
                 <th>Nama Peminjam</th>
-                <th>Denda</th>
                 <th>Lama Peminjaman</th>
                 <th>Tanggal Denda</th>
+                <th>Denda</th>
             </tr>
         </thead>
         <tbody>
@@ -115,9 +115,9 @@
                     <td><?php echo $isi['id_denda'] ?></td>
                     <td><?php echo $isi['pinjam_id'] ?></td>
                     <td><?php echo $isi['nama'] ?></td>
-                    <td>Rp.<?php echo $isi['denda'] ?></td>
                     <td><?php echo $isi['lama_waktu'] ?>Hari</td>
                     <td><?php echo date("d-m-Y", strtotime($isi['tgl_denda'])) ?></td>
+                    <td>Rp.<?php echo number_format($isi['denda'], 0, ",", "."); ?></td>
                 </tr>
             <?php $no++;
 
@@ -126,13 +126,9 @@
         </tbody>
         <thead>
             <tr>
-                <th>Jumlah Total Denda</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <td>Rp.<?php echo $jumlahtotal; ?></td>
-                <th></th>
-                <th></th>
+                <th colspan="6">Jumlah Total Denda</th>>
+                <td>Rp.<?php echo number_format($jumlahtotal, 0, ",", "."); ?></td>
+
             </tr>
         </thead>
     </table>

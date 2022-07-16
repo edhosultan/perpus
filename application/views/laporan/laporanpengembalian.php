@@ -127,12 +127,7 @@
         </tbody>
         <thead>
             <tr>
-                <th>Jumlah Total</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th colspan="6">Jumlah Total</th>
                 <td><?php echo $jumlahtotal; ?></td>
             </tr>
         </thead>
