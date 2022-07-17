@@ -68,7 +68,7 @@
             Email : smpn2_ktb@yahoo.co.id Website : www.smpn2kotabaru.co.id
         </p>
     </div>
-    <hr style="border: 0.5px solid black; margin: 10px 5px 10px 5px;">
+    <hr style="border: 0.5px solid black; margin: 10px 5px 10px 5px;height:8px;">
     <?php
     // Koneksi
     $koneksi = mysqli_connect('localhost', 'root', '', 'projek_perpus');
@@ -87,6 +87,10 @@
     }
     ?>
     <br>
+    <div style="font-size: 18px;text-align:center;"><u>Laporan Data Pengembalian</u>
+        <br>
+        <br>
+    </div>
     <table class="table table-bordered" style="width:100%;">
         <thead>
             <tr>
@@ -124,29 +128,30 @@
 
                 $jumlahtotal += $isi['jumlah'];
             } ?>
-        </tbody>
-        <thead>
+
             <tr>
                 <th colspan="6">Jumlah Total</th>
                 <td><?php echo $jumlahtotal; ?></td>
             </tr>
-        </thead>
+        </tbody>
     </table>
     <br>
     <br>
     <br>
     <br>
-    <div style="text-align:right">
-        <div style="font-size: 12px">Kotabaru, <?php echo date("d-m-y") ?>
+    <div style="margin-left: 500px">
+        <div style="font-size: 12px;">Kotabaru, <?php echo date("d-m-y") ?>
+            <div style="font-Size: 12px">Kepala Perpustakaan</div>
             <br>
             <br>
             <br>
             <br>
             <br>
             <div style="font-size: 12px">Jamilah Rosnina S.Si</div>
+            <div style="font-size: 12px">NIP. 19840825 200903 2011</div>
         </div>
     </div>
-    <hr style="border: 0.5px solid black; margin: 10px 5px 10px 5px;">
+    <hr style="border: 0.5px solid black; margin: 10px 5px 10px 5px;height:8px;">
     <div style="margin-left: 20px">
         <div style="font-size: 18px">Laporan Data Pengembalian
         </div>

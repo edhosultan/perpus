@@ -80,7 +80,7 @@ class M_Login extends CI_Model
   {
     $tglawal = $_POST['tanggalawal'];
     $tglakhir = $_POST['tanggalakhir'];
-    $allusers = $this->db->query("SELECT tbl_login.anggota_id,nama,alamat,telepon,COUNT(*) as jumlah FROM tbl_kunjungan JOIN tbl_login ON tbl_login.anggota_id=tbl_kunjungan.anggota_id WHERE tgl_pinjam BETWEEN '$tglawal' AND '$tglakhir' GROUP BY tbl_login.anggota_id");
+    $allusers = $this->db->query("SELECT tbl_login.anggota_id,nama,alamat,telepon,COUNT(*) as jumlah FROM tbl_kunjungan JOIN tbl_login ON tbl_login.anggota_id=tbl_kunjungan.anggota_id WHERE tanggal BETWEEN '$tglawal' AND '$tglakhir' GROUP BY tbl_login.anggota_id");
     return $allusers->result_array();
   }
   function GET_TOPBUKU10()
